@@ -18,6 +18,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('hello', function(){
+	return "Hello World!";
+});
+
+Route::get('post/{id?}', function($id = '0') {
+	return "id:".$id;
+})->where('id', '[0-9]+');
+
+// route name
+Route::get('post2/{id?}', ['as' => 'post2.show', function($id = 0) {
+	return "id:".$id;
+}])->where('id', '[0-9]+');
+
+
+Route::group(['prefix' => 'fruit'], function() {
+	Route::get('apple', function() {
+		return "everyone's apple.";
+	});
+	Route::get('banana', function() {
+		return "everyone's banana.";
+	});
+});
+
+Route::group(['prefix' => 'admin/fruit'], function() {
+	Route::get('apple', ['as' => 'ad.fr.apple', function() {
+		return "admin's apple.";
+	}]);
+	Route::get('banana', ['as' => 'ad.fr.banana', function() {
+		return "admin's banana.";
+	}]);
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes

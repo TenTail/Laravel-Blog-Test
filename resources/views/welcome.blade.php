@@ -39,6 +39,9 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
+                <h3><a href="{{route('post2.show', 2)}}">post2</a></h3>
+                <h3><a href="{{route('ad.fr.apple')}}">admin's apple</a></h3>
+                <h3><a href="{{route('ad.fr.banana')}}">admin's banana</a></h3>
             </div>
         </div>
     </body>

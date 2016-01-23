@@ -22,7 +22,7 @@ Route::get('hello', function(){
 	return "Hello World!";
 });
 
-Route::get('post/{id?}', function($id = '0') {
+Route::get('post/{id}', function($id) {
 	return "id:".$id;
 })->where('id', '[0-9]+');
 
@@ -33,12 +33,12 @@ Route::get('post2/{id?}', ['as' => 'post2.show', function($id = 0) {
 
 
 Route::group(['prefix' => 'fruit'], function() {
-	Route::get('apple', function() {
-		return "everyone's apple.";
-	});
-	Route::get('banana', function() {
-		return "everyone's banana.";
-	});
+	Route::get('apple', ['as' => 'fr.apple', function() {
+		return view('fruit.apple');
+	}]);
+	Route::get('banana', ['as' => 'fr.banana', function() {
+		return view('fruit.banana');
+	}]);
 });
 
 Route::group(['prefix' => 'admin/fruit'], function() {

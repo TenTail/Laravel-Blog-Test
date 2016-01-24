@@ -12,12 +12,23 @@
 */
 
 Route::get('/', function () {
-
 	// throw new Exception("Tracy is work!", 1);
-	
-    return view('welcome');
+    return view('index');
 });
 
+Route::get('about', ['as' => 'about', function() {
+	return view('about');
+}]);
+
+Route::get('contact', ['as' => 'contact', function() {
+	return view('contact');
+}]);
+
+Route::get('blog', ['as' => 'blog', function() {
+	return view('blog');
+}]);
+
+/*
 Route::get('hello', function(){
 	return "Hello World!";
 });
@@ -49,6 +60,8 @@ Route::group(['prefix' => 'admin/fruit'], function() {
 		return "admin's banana.";
 	}]);
 });
+*/
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

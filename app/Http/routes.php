@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['as' => 'index', function () {
 	// throw new Exception("Tracy is work!", 1);
     return view('index');
-});
+}]);
 
 Route::get('about', ['as' => 'about', function() {
 	return view('about');

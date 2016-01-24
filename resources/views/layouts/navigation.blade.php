@@ -10,22 +10,22 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="index.php">Business Casual</a>
+            <a class="navbar-brand" href="{{ route('index') }}">Business Casual</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.php">Home</a>
+                    <a href="{{ route('index') }}">Home</a>
                 </li>
                 <li>
-                    <a href="about.php">About</a>
+                    <a href="{{ route('about') }}">About</a>
                 </li>
                 <li>
-                    <a href="blog.php">Blog</a>
+                    <a href="{{ route('blog') }}">Blog</a>
                 </li>
                 <li>
-                    <a href="contact.php">Contact</a>
+                    <a href="{{ route('contact') }}">Contact</a>
                 </li>
             </ul>
         </div>

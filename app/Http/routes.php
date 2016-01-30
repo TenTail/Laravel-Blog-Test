@@ -1,5 +1,5 @@
 <?php
-
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -11,26 +11,118 @@
 |
 */
 
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+/*
 Route::get('/', ['as' => 'index', function () {
 	// throw new Exception("Tracy is work!", 1);
     return view('index');
 }]);
-
+*/
+Route::get('about', ['as' => 'about', 'uses' => 'AboutController@index']);
+/*
 Route::get('about', ['as' => 'about', function() {
 	return view('about');
 }]);
+*/
 
+Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
+/*
 Route::get('contact', ['as' => 'contact', function() {
 	return view('contact');
 }]);
+*/
 
+Route::group(['prefix' => 'blog'], function () {
+	Route::get('', ['as' => 'blog.home', 'uses' => 'BlogController@index']);
+	Route::get('/{id}', ['as' => 'blog.show', 'uses' => 'BlogController@show'])->where('id', '[0-9]+');
+});
+
+
+/*
 Route::get('blog', ['as' => 'blog', function() {
 	return view('blog');
 }]);
+*/
 
 Route::get('CanvasTest', ['as' => 'CanvasTest', function() {
 	return view('CanvasTest');
 }]);
+
+Route::group(['prefix' => 'ORM'], function () {
+	Route::get('', ['as' => 'ORM.HOME', function () {
+		echo "this is ORM HOME.";
+	}]);
+	Route::get('create', ['as' => 'ORM.create', function () {
+		// 使用Facade的create方法
+		\App\Models\Articles::create([
+			'article_title' => '文章測試Facade',
+	    	'article_content' => '這是一篇測試文章，第Facade篇。',
+	    	'feature' => rand(0, 1),
+	    	'page_view' => rand(0, 200),
+	    	'created_at' => Carbon::now('Asia/Taipei'),
+	    	'updated_at' => Carbon::now('Asia/Taipei'),
+		]);
+		echo "Facade!!<br />";
+
+		// 使用new建構式
+		$post = new \App\Models\Articles();
+
+		$post->article_title = '文章測試new';
+		$post->article_content = '這是一篇測試文章，第new篇。';
+		$post->feature = rand(0, 1);
+		$post->page_view = rand(0, 200);
+		$post->created_at = Carbon::now('Asia/Taipei');
+		$post->updated_at = Carbon::now('Asia/Taipei');
+
+		$post->save();
+		echo "new!!<br />";
+	}]);
+	Route::get('search', ['as' => 'ORM.search', function () {
+		// 收尋資料
+		$data = \App\Models\Articles::all();
+		// var_dump($data);
+		// exit();
+		dd($data);
+
+		// 條件收尋
+		$data = \App\Models\Articles::where('feature', '=', true)->orderBy('id')->get();
+		// dd($data);
+	}]);
+	Route::get('update', ['as' => 'ORM.update', function () {
+		// 更新資料
+		$data = \App\Models\Articles::find(1);
+
+		$data->update([
+			'article_title' => 'update test.',
+			'feature' => true,
+		]);
+
+		$data = \App\Models\Articles::where('id', '=', 10);
+		$data->update([
+			'article_title' => 'update test=3=.',
+			'feature' => false,
+		]);
+
+		// save方法
+		$data = \App\Models\Articles::where('id', '=', 11)->first();
+		$data->article_title = 'update test -3-.';
+		$data->feature = true;
+
+		$data->save();
+
+	}]);
+	Route::get('delete', ['as' => 'ORM.delete', function () {
+		$data = \App\Models\Articles::find(2);
+		$data->delete();
+
+		\App\Models\Articles::destroy(19, 20);
+	}]);
+});
+
+Route::get('test', function () {
+	$data = \App\Models\Article::find(5);
+	dd($data->comments);
+});
 
 /*
 Route::get('hello', function(){

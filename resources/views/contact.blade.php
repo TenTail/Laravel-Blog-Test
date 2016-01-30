@@ -16,18 +16,17 @@
                 </div>
                 <div class="col-md-8">
                     <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
-                    <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
-                </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10317.608739613614!2d120.58869966054709!3d23.89580385967408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1szh-TW!2stw!4v1453693722404" width="600" height="450" frameborder="0" style="border:1px solid #000000;" allowfullscreen></iframe>                </div>
                 <div class="col-md-4">
                     <p>Phone:
-                        <strong>123.456.7890</strong>
+                        <strong>0922269697</strong>
                     </p>
                     <p>Email:
-                        <strong><a href="mailto:name@example.com">name@example.com</a></strong>
+                        <strong><a href="mailto:tentail10@gmail.com">tentail10@gmail.com</a></strong>
                     </p>
                     <p>Address:
-                        <strong>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</strong>
+                        <strong>彰化縣社頭鄉</strong>
+                            {{-- <br>Beverly Hills, CA 90210</strong> --}}
                     </p>
                 </div>
                 <div class="clearfix"></div>

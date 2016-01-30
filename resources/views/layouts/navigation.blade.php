@@ -27,6 +27,9 @@
                 <li>
                     <a href="{{ route('contact') }}">Contact</a>
                 </li>
+                <li>
+                    <a href="{{ route('CanvasTest')}}">Canvas測試</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -28,6 +28,10 @@ Route::get('blog', ['as' => 'blog', function() {
 	return view('blog');
 }]);
 
+Route::get('CanvasTest', ['as' => 'CanvasTest', function() {
+	return view('CanvasTest');
+}]);
+
 /*
 Route::get('hello', function(){
 	return "Hello World!";

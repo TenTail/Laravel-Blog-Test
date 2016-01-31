@@ -4,7 +4,6 @@
 
 @section('content')    
 <div class="container">
-
     <div class="row">
         <div class="box">
             <div class="col-lg-12">
@@ -14,18 +13,23 @@
                 </h2>
                 <hr>
             </div>
-
+        
             @foreach ($posts as $post)
                 <div class="col-lg-12 text-center">
                     <h2> {{ $post->article_title }}
                         <br>
-                        <small>{{ $post->updated_at }}</small>
+                        <small>{{ $post->updated_at->diffForHumans() }}</small>
                     </h2>
                     <p>{!! $post->article_content !!}</p>
-                    <a href="{{ route('blog.show', $post->id) }}" class="btn btn-default btn-lg">Read More</a>
+                    <a href="{{ route('article.edit', $post->id) }}" class="btn btn-default btn-lg">Read More</a>
                     <hr>
                 </div>
             @endforeach
+            <!-- 頁數 -->
+            <div class="text-center">
+                {!! $posts->render() !!}
+            </div>
+            
 
             <!-- <div class="col-lg-12 text-center">
                 <img class="img-responsive img-border img-full" src="img/slide-1.jpg" alt="">

@@ -32,11 +32,20 @@ Route::get('contact', ['as' => 'contact', function() {
 }]);
 */
 
+Route::group(['prefix' => 'article'], function () {
+	Route::get('', ['as' => 'article.index', 'uses' => 'ArticlesController@index']);
+	Route::get('create', ['as' => 'article.create', 'uses' => 'ArticlesController@create']);
+	Route::post('store', ['as' => 'article.store', 'uses' => 'ArticlesController@store']);
+	Route::get('{id}/edit', ['as' => 'article.edit', 'uses' => 'ArticlesController@edit']);
+	Route::patch('{id}', ['as' => 'article.update', 'uses' => 'ArticlesController@update']);
+	Route::delete('{id}', ['as' => 'article.destroy', 'uses' => 'ArticlesController@destroy']);
+});
+/*
 Route::group(['prefix' => 'blog'], function () {
 	Route::get('', ['as' => 'blog.home', 'uses' => 'BlogController@index']);
 	Route::get('/{id}', ['as' => 'blog.show', 'uses' => 'BlogController@show'])->where('id', '[0-9]+');
 });
-
+*/
 
 /*
 Route::get('blog', ['as' => 'blog', function() {
@@ -120,8 +129,11 @@ Route::group(['prefix' => 'ORM'], function () {
 });
 
 Route::get('test', function () {
-	$data = \App\Models\Article::find(5);
-	dd($data->comments);
+	// $data = \App\Models\Article::find(5);
+	$data1 = \App\Models\Article::all();
+	$data2 = \App\Models\Article::where('id', '>', 8);
+	$data3 = \App\Models\Article::orderBy('id', 'DESC');
+	dd([$data1, $data2, $data3]);
 });
 
 /*

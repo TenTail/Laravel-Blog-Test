@@ -22,7 +22,7 @@
                     <a href="{{ route('about') }}">About</a>
                 </li>
                 <li>
-                    <a href="{{ route('blog.home') }}">Blog</a>
+                    <a href="{{ route('article.index') }}">Blog</a>
                 </li>
                 <li>
                     <a href="{{ route('contact') }}">Contact</a>

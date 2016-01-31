@@ -11,47 +11,8 @@ use Carbon\Carbon;
 |
 */
 
-Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-/*
-Route::get('/', ['as' => 'index', function () {
-	// throw new Exception("Tracy is work!", 1);
-    return view('index');
-}]);
-*/
-Route::get('about', ['as' => 'about', 'uses' => 'AboutController@index']);
-/*
-Route::get('about', ['as' => 'about', function() {
-	return view('about');
-}]);
-*/
 
-Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
-/*
-Route::get('contact', ['as' => 'contact', function() {
-	return view('contact');
-}]);
-*/
 
-Route::group(['prefix' => 'article'], function () {
-	Route::get('', ['as' => 'article.index', 'uses' => 'ArticlesController@index']);
-	Route::get('create', ['as' => 'article.create', 'uses' => 'ArticlesController@create']);
-	Route::post('store', ['as' => 'article.store', 'uses' => 'ArticlesController@store']);
-	Route::get('{id}/edit', ['as' => 'article.edit', 'uses' => 'ArticlesController@edit']);
-	Route::patch('{id}', ['as' => 'article.update', 'uses' => 'ArticlesController@update']);
-	Route::delete('{id}', ['as' => 'article.destroy', 'uses' => 'ArticlesController@destroy']);
-});
-/*
-Route::group(['prefix' => 'blog'], function () {
-	Route::get('', ['as' => 'blog.home', 'uses' => 'BlogController@index']);
-	Route::get('/{id}', ['as' => 'blog.show', 'uses' => 'BlogController@show'])->where('id', '[0-9]+');
-});
-*/
-
-/*
-Route::get('blog', ['as' => 'blog', function() {
-	return view('blog');
-}]);
-*/
 
 Route::get('CanvasTest', ['as' => 'CanvasTest', function() {
 	return view('CanvasTest');
@@ -182,5 +143,18 @@ Route::group(['prefix' => 'admin/fruit'], function() {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+
+	Route::get('about', ['as' => 'about', 'uses' => 'AboutController@index']);
+
+	Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@index']);
+    
+    Route::group(['prefix' => 'article'], function () {
+		Route::get('', 			['as' => 'article.index', 'uses' => 'ArticlesController@index']);
+		Route::get('create', 	['as' => 'article.create', 'uses' => 'ArticlesController@create']);
+		Route::post('store', 	['as' => 'article.store', 'uses' => 'ArticlesController@store']);
+		Route::get('{id}/edit', ['as' => 'article.edit', 'uses' => 'ArticlesController@edit']);
+		Route::patch('{id}', 	['as' => 'article.update', 'uses' => 'ArticlesController@update']);
+		Route::delete('{id}', 	['as' => 'article.destroy', 'uses' => 'ArticlesController@destroy']);
+	});
 });

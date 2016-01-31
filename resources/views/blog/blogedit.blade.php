@@ -42,11 +42,12 @@
 		                <div id="success"></div>
 		                <div class="row">
 		                    <div class="form-group col-xs-12">
-		                        {!! Form::submit('送出', ['class' => 'btn btn-primary']) !!}
+		                        {!! Form::submit('送出', ['class' => 'btn btn-success']) !!}
 		                        {!! Form::close() !!}
 								{!! Form::open(['route' => ['article.destroy', $post->id], 'method' => 'delete', 'style' => 'display: inline;']) !!}
 			                        {!! Form::submit('刪除', ['class' => 'btn btn-danger']) !!}
 			                    {!! Form::close() !!}
+			                    <a href="{{ route('article.index') }}" class="btn btn-primary" style="display: inline;">取消</a>
 		                    </div>
 		                </div>
 

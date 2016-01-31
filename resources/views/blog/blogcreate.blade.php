@@ -3,6 +3,15 @@
 @section('brand', 'BLOG')
 
 @section('content')  
+{{-- error --}}
+@if ($errors->any())
+	<div class="alert alert-danger text-center" role="alert">
+		<strong>ERROR!!</strong>
+		@foreach ($errors->all() as $error)
+			{{ $error }}
+		@endforeach
+	</div>
+@endif
 
 <div class="container">
 	<div class="row">
@@ -41,7 +50,8 @@
 	                <div id="success"></div>
 	                <div class="row">
 	                    <div class="form-group col-xs-12">
-	                        {!! Form::submit('送出', ['class' => 'btn btn-primary']) !!}
+	                        {!! Form::submit('送出', ['class' => 'btn btn-success']) !!}
+	                        <a href="{{ route('article.index') }}" class="btn btn-primary">取消</a>
 	                    </div>
 	                </div>
 				{!! Form::close() !!}

@@ -19,6 +19,11 @@ class Article extends Model
     	'updated_at',
     ];
 
+    // 型別轉換
+    protected $casts = [
+        'feature' => 'boolean',
+    ];
+
     public function comments () {
     	return $this->hasMany(Comment::class);
     }

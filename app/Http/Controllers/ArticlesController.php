@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\Controller;
 
 use App\Models\Article;
@@ -18,7 +19,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $posts = Article::orderBy('created_at', 'DESC')->paginate(10);
+        $posts = Article::orderBy('created_at', 'DESC')->paginate(5);
         $data = compact('posts');
 
         return view('blog\blog', $data);
@@ -40,7 +41,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         // dd($request);
         $post = Article::create($request->except('_token'));
@@ -69,6 +70,11 @@ class ArticlesController extends Controller
     {
         $post = Article::find($id);
 
+        if(is_null($post)){
+            abort(404);
+            // return redirect()->route('article.index')->with('message', '找不到文章。');
+        }
+        
         $data = compact('post');
 
         return view('blog\blogedit', $data);
@@ -81,7 +87,7 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
         $post = Article::find($id);
 
